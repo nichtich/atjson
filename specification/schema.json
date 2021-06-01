@@ -1,0 +1,47 @@
+{
+  "title": "JSON Schema of atjson format",
+  "description": "preliminary schema (work in progress)",
+  "type": "object",
+  "required": ["content", "annotations"],
+  "additionalProperties": false,
+  "properties": {
+    "content": {
+      "type": "string",
+      "title": "document content"
+    },
+    "annotations": {
+      "type": "array",
+      "title": "list of annotations",
+      "items": {
+        "type": "object",
+        "title": "annotation object",
+        "required": ["type", "start", "end"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "minLength": 1,
+            "title": "annotation type"
+          },
+          "start": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "start position",
+            "description": "must be a value from 0 (before the first character in the document) to the length of the document (after the last character)"
+          },
+          "end": {
+            "type": "integer",
+            "minimum": 0,
+            "title": "end position",
+            "description": "must be a value from start position to the length of the document (after the last character)"
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": true,
+            "title": "optional annotation attributes"
+          }
+        }
+      }
+    }
+  }
+}
